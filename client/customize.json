@@ -3,5 +3,5 @@
     "balance": 1000,
     "host": "default",
     "port": "default",
-    "note": "Bạn có thể config tùy ý trong file này, kể cả host và port nếu bạn có máy chủ riêng."
+    "note": "Bạn có thể config tùy ý trong file này, kể cả host và port nếu bạn có máy chủ riêng. Lưu ý port là số nguyên nên bạn bỏ dấu ngoặc khi chỉnh sửa nha."
 }

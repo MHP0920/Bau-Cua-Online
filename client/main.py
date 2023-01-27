@@ -211,7 +211,8 @@ class NewRoom_PL2(QMainWindow):
                 _waitingroom.show()
                 _waitingroom.set_text()
                 self.hide()
-        except:
+        except Exception as e:
+            print(e)
             QMessageBox.critical(None, "Rejected", "Đã có lỗi xảy ra.")
             _connection.flush()
             try:
