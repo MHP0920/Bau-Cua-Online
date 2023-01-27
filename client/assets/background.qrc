@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="background">
+    <file>images/chieu.png</file>
+  </qresource>
+</RCC>

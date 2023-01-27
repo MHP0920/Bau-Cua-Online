@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Main</class>
+ <widget class="QMainWindow" name="Main">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Game Bầu Cua Online - Opening Page</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(247, 73, 75, 255), stop:0.997452 rgba(255, 189, 96, 255), stop:1 rgba(255, 255, 255, 255));</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <widget class="QLabel" name="title">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>30</y>
+      <width>801</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>25</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:none;</string>
+    </property>
+    <property name="text">
+     <string>HƯỚNG DẪN</string>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="description">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>90</y>
+      <width>801</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:none;</string>
+    </property>
+    <property name="text">
+     <string>Bầu Cua Online Game</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="credit">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>560</y>
+      <width>801</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:white;background-color:none;</string>
+    </property>
+    <property name="text">
+     <string>Game made by MHP. You can buy me a cup of coffee through https://www.buymeacoffee.com/py.hacker.hieu, thank you very much.</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="tutorialtb">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>190</y>
+      <width>731</width>
+      <height>351</height>
+     </rect>
+    </property>
+    <property name="html">
+     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Bầu Cua Online Game là gì?&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Bầu Cua Online Game là &lt;/span&gt;&lt;span style=&quot; font-size:12pt; font-style:italic;&quot;&gt;một trò chơi mã nguồn mở&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; được làm bởi MHP nhân dịp Tết Quý Mão 2023, với Bầu Cua Online Game bạn có thể chơi cùng bạn bè, chỉnh sửa mã nguồn để trò chơi thêm hay hoặc sinh động hơn và có thể tạo một máy chủ của riêng bạn để chơi một cách riêng tư.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Cách chơi&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Với giao diện đơn giản, bạn có thể vào chơi ngay những phòng đang mở hoặc tự tạo phòng mới cho bạn và người thân.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Để chơi ngay:&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; Bạn nhấn vào nút &amp;quot;Tìm phòng&amp;quot; ở giao diện trang chủ để tìm những phòng đang mở bằng cách nhập ID phòng bạn nhận được từ người chơi khác hoặc chủ phòng.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Ở giao diện Tìm phòng, bạn nhập ID phòng cần vào và nhấn Vào phòng&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Để tạo phòng&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;: Bạn được lựa chọn làm Người chơi hoặc Nhà cái. Với việc làm người chơi, phòng đó sẽ mặc định Nhà cái là bot và sẽ tự động chơi nếu đủ người chơi. Nếu bạn chọn Nhà cái, phòng đó sẽ được tạo dưới dạng 0 người chơi trong phòng và bạn có quyền bắt đầu chơi khi có ít nhất 1 người chơi.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Sau khi chọn làm Người chơi hoặc Nhà cái, bạn sẽ được yêu cầu cung cấp Tên phòng và Số người chơi tối đa trong 1 phòng. Hiện tại trò chơi chỉ hỗ trợ tối đa 20 người trong 1 phòng, bạn có thể chỉnh sửa giới hạn ở máy chủ của riêng bạn. ID của phòng sẽ được tạo ngẫu nhiên và không bị trùng với phòng khác.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Sau khi đã tạo phòng hoặc vào phòng, bạn sẽ được chuyển đến phòng chờ để chờ tất cả người chơi sẵn sàng hoặc để chờ đủ người trong phòng nếu Nhà cái phòng của bạn là bot.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Khi tất cả đã sẵn sàng và phòng bắt đầu chơi, bạn sẽ được chuyển đến trang lựa chọn, sẽ có 6 lựa chọn là Bầu, Cua, Tôm, Cá, Gà, Hổ theo kiểu chơi tiêu chuẩn, lưu ý rằng mỗi con vật chỉ được chọn 1 lần. &lt;/span&gt;&lt;span style=&quot; font-size:12pt; font-style:italic;&quot;&gt;Nếu bạn là Nhà cái, bạn sẽ không được chọn mà việc của bạn là ngồi đợi người chơi khác chọn và bắt đầu tung xúc xắc.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Sau khi chọn bạn hãy nhấn Khóa, lúc này phòng sẽ đợi đến khi tất cả đều khóa thì mới bắt đầu tung xúc xắc.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Khi đã chọn xong bạn sẽ được chuyển đến trang tung xúc xắc, hình 2D của xúc xắc được tung sẽ hiện trên màn hình sau ít giây và cả chữ của chúng, bạn sẽ được biết mình thắng hay thua và số tiền (MHPoint) của bạn sẽ được cộng hoặc giảm tự động. Nếu bạn là Nhà cái, số tiền bạn nhận được sẽ là số tiền thua của người chơi và ngược lại, số tiền mất của bạn sẽ là số tiền thắng của người chơi.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Sau khi nhận được kết quả, nếu bạn muốn chơi tiếp có thể nhấn vào nút Chơi lại ở góc trái cuối màn hình, nút này giống như nút Sẵn sàng, sẽ yêu cầu tất cả người chơi đều nhấn thì mới bắt đầu ván mới. Nếu bạn không muốn chơi nữa, có thể nhấn nút &amp;quot;X&amp;quot; ở góc trên cùng bên phải màn hình, lúc này bạn sẽ được tự động chuyển về màn hình chính.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Những Quy ước&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Tiền tệ sẽ có kí hiệu là MHPoint và không thể đổi qua tiền thật và ngược lại.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Trò chơi không yêu cầu bạn cung cấp thông tin nhạy cảm lên trò chơi và bạn được khuyến khích không nên tung thông tin nhạy cảm của mình lên trò chơi bằng bất kì giá nào.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Mọi thông tin về người chơi trên trò chơi đều có thể thay đổi trong tệp tin customize.json, bạn có thể thay đổi tùy thích.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Số tiền của bạn sẽ được làm mới sau khi bạn thoát phòng chơi gần nhất, kể cả khi số MHPoint của bạn về con số 0.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Máy chủ được cung cấp bởi MHP miễn phí cho người dùng và sẽ không yêu cầu bạn cung cấp bất kì khoản chi phí nào, MHP chỉ mong các bạn sẽ tiếp tục ủng hộ (Một cốc cafe hoặc chia sẻ rộng rãi) để nhóm có thể tiếp tục phát triển.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Bạn có thể tạo máy chủ của riêng mình nếu bạn thấy máy chủ public chưa được tốt, nhưng mong bạn sẽ không xóa dòng Credit của bọn mình vì công sức của cả nhóm bỏ ra là khá nhiều 💖&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Các bạn có thể đóng gói ứng dụng thành tệp tin .exe, nhưng nhóm mình &lt;/span&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;sẽ không chịu trách nhiệm&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; với những hành vi chèn mã độc vào tệp tin .exe và chia sẻ dưới danh nghĩa là ứng dụng của bọn mình. Trò chơi của bọn mình là hoàn toàn mã nguồn mở và sẽ luôn luôn (khá chắc) là như vậy.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Mục đích của trò chơi này là để giải trí với gia đình và bạn bè những ngày Tết, vui lòng không lợi dụng để trục lợi cá nhân.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Official Game Link&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Bản mới nhất của trò chơi sẽ luôn được cập nhật trên trang Github của MHP0920.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="exit">
+    <property name="geometry">
+     <rect>
+      <x>730</x>
+      <y>20</y>
+      <width>55</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+background:none;
+}
+QLabel::hover {
+background:none;
+color:white;
+}</string>
+    </property>
+    <property name="text">
+     <string>X</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="background.qrc"/>
+ </resources>
+ <connections/>
+</ui>
