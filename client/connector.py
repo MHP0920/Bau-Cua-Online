@@ -4,8 +4,8 @@ import pickle
 class Network:
     def __init__(self):
         self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.server = "127.0.0.1"#"8.tcp.ngrok.io"
-        self.port = 5000#18136
+        self.server = "8.tcp.ngrok.io"
+        self.port = 18136
         self.addr = (self.server, self.port)
         self.client.settimeout(2)
     def connect(self):
