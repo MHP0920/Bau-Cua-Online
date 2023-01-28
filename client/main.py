@@ -13,10 +13,7 @@ from processor import _solve
 import pyperclip
 
 # Make it global.
-_roomid = ''
 _total = 0
-_ishost = False
-_icr = False
 _being = ''
 _id = ''
 _current = 0
