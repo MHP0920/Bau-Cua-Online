@@ -21,7 +21,7 @@ _roomname = ''
 _status = 'waiting'
 _running = False
 _runner = True
-
+_server = []
 
 class OpeningPage(QMainWindow):
     def __init__(self):
@@ -341,15 +341,43 @@ class PlayGame(QMainWindow):
         self.ui.firstimg.clear()
         self.ui.secondimg.clear()
         self.ui.thirdimg.clear()
+    # Prevent disconnection
+    def retrygetresult(self, _times):
+        global _server
+        if _times < 3:
+            try:
+                resp = _connection.send(pickle.dumps({"status": "result"}))
+                _server_chose = resp['data']
+                _server = _server_chose
+                return
+            except:
+                QTimer.singleShot(1000, lambda: self.retrygetresult(_times+1))
+        if not _server:
+            _server = ["Error"]
+        return 
     def start(self):
-        global _balance, _chosen
+        global _balance, _chosen, _server
+        # Flush server result at start to make sure no wrong result
+        _server = []
         # Get result from network
         # Send reset req to network
         try:
-            resp = _connection.send(pickle.dumps({"status": "result"}))
-            _server_chose = resp['data']
-            self._process(_server_chose)
-            _new_balance = _solve(_chosen, _server_chose, _balance)
+            QTimer.singleShot(1, lambda: self.retrygetresult(0))
+            while not _server:
+                self.update()
+                QApplication.processEvents()
+            if "Error" in _server:
+                QMessageBox.critical(None, "Error", "Không thể nhận kết quả từ máy chủ, vui lòng vào lại phòng.")
+                _connection.flush()
+                self.flush()
+                self.hide()
+                _openingpage.show()
+                _server = []
+                return
+
+            self._process(_server)
+            _new_balance = _solve(_chosen, _server, _balance)
+            _server = []
             if _new_balance <= 0:
                 QMessageBox.critical(None, "God", "Bạn đã hết tiền =)))))))")
                 load_customize()
