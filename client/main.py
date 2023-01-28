@@ -361,7 +361,7 @@ class PlayGame(QMainWindow):
             _chosen = []
             resp = _connection.send(pickle.dumps({"status": "reset"}))
             if resp['status'] == 'neednewbalance':
-                resp = _connection.send(pickle.dumps({"status": "resubmit", 'balance': _new_balance}))
+                resp = _connection.send(pickle.dumps({"status": "resubmit", 'balance': _balance}))
             self.ui.playagain.setEnabled(True)
         except Exception as e:
             print(e)
