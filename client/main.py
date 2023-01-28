@@ -10,6 +10,7 @@ import json
 import pickle
 import time
 from processor import _solve
+import pyperclip
 
 # Make it global.
 _roomid = ''
@@ -236,6 +237,10 @@ class Choosing(QMainWindow):
         self.closeEvent = self.normalclose
         QTimer.singleShot(1000, self.set_text)
         self.setWindowFlag(Qt.WindowCloseButtonHint, False)
+        self.ui.idroom.setToolTip('Nhấn để copy id')
+        self.ui.idroom.mousePressEvent = self.copyid
+    def copyid(self, env=None):
+        pyperclip.copy(_id)
     def lock(self):
         if not _chosen:
             QMessageBox.warning(None, "Failed", "Bạn phải chọn con vật trước khi khóa.")
@@ -308,6 +313,10 @@ class PlayGame(QMainWindow):
         "Gà": QPixmap("assets/images/ga.png")}
         self.ui.playagain.setEnabled(False)
         self.ui.playagain.clicked.connect(self.playagain)
+        self.ui.idroom.setToolTip('Nhấn để copy id')
+        self.ui.idroom.mousePressEvent = self.copyid
+    def copyid(self, env=None):
+        pyperclip.copy(_id)
     def normalclose(self, env=None):
         global _running, _runner
         _running = False
@@ -344,7 +353,11 @@ class PlayGame(QMainWindow):
             _server_chose = resp['data']
             self._process(_server_chose)
             _new_balance = _solve(_chosen, _server_chose, _balance)
-            _balance = _new_balance
+            if _new_balance <= 0:
+                QMessageBox.critical(None, "God", "Bạn đã hết tiền =)))))))")
+                load_customize()
+            else:
+                _balance = _new_balance
             _chosen = []
             resp = _connection.send(pickle.dumps({"status": "reset"}))
             if resp['status'] == 'neednewbalance':
@@ -374,6 +387,10 @@ class WaitingRoom(QMainWindow):
         self.ui.cancel.clicked.connect(self.cancel)
         self.closeEvent = self.normalclose
         self.setWindowFlag(Qt.WindowCloseButtonHint, False)
+        self.ui.idroom.setToolTip('Nhấn để copy id')
+        self.ui.idroom.mousePressEvent = self.copyid
+    def copyid(self, env=None):
+        pyperclip.copy(_id)
     def normalclose(self, env=None):
         global _running, _runner
         _running = False
