@@ -23,6 +23,9 @@ Mình có viết hướng dẫn ngay trong trò chơi, các bạn có thể vào
 
 > cd Bau-Cua-Online
 
+Sau đó bạn cần tải các thư viện cần thiết
+> pip install -r requirements.txt
+
 Vì đã có host public nên bạn chỉ việc chạy trong thư mục client, mà nhớ chỉnh sửa lại username trong tệp customize.json nhé.
 > cd client
 
@@ -42,7 +45,7 @@ Sau đó bạn config file customize.json ở client phần host và port về m
 
 [Trần Minh Hiếu](https://facebook.com/py.hacker.hieu)
 
-**Hosting, Server Managing and Supporting**
+**Hosting and Server Managing, Supporting and Co-Debugging**
 
 [Notch Apple](https://www.facebook.com/notchapple1703)
 
