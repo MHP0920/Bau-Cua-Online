@@ -59,6 +59,7 @@ class Ui_Main(object):
         font.setFamily("Segoe UI")
         font.setPointSize(15)
         self.exit.setFont(font)
+        self.exit.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.exit.setStyleSheet("QLabel {\n"
 "background:none;\n"
 "}\n"

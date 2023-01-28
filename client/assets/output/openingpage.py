@@ -12,7 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_Main(object):
-    def setupUi(self, Main: QtWidgets.QMainWindow):
+    def setupUi(self, Main):
         Main.setObjectName("Main")
         Main.resize(800, 600)
         Main.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(247, 73, 75, 255), stop:0.997452 rgba(255, 189, 96, 255), stop:1 rgba(255, 255, 255, 255));")
@@ -53,6 +53,7 @@ class Ui_Main(object):
         font.setBold(True)
         font.setWeight(75)
         self.findroom.setFont(font)
+        self.findroom.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.findroom.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 170, 127, 176), stop:1 rgba(255, 255, 127, 187));\n"
 "color: rgb(255, 255, 255);")
         self.findroom.setObjectName("findroom")
@@ -64,6 +65,7 @@ class Ui_Main(object):
         font.setBold(True)
         font.setWeight(75)
         self.newroom.setFont(font)
+        self.newroom.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.newroom.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 170, 127, 176), stop:1 rgba(255, 255, 127, 187));\n"
 "color: rgb(255, 255, 255);")
         self.newroom.setObjectName("newroom")
@@ -80,6 +82,7 @@ class Ui_Main(object):
         font.setBold(True)
         font.setWeight(75)
         self.tutorial.setFont(font)
+        self.tutorial.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.tutorial.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 170, 127, 176), stop:1 rgba(255, 255, 127, 187));\n"
 "color: rgb(255, 255, 255);")
         self.tutorial.setObjectName("tutorial")

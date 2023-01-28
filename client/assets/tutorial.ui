@@ -160,6 +160,9 @@ p, li { white-space: pre-wrap; }
       <pointsize>15</pointsize>
      </font>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
     <property name="styleSheet">
      <string notr="true">QLabel {
 background:none;

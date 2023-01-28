@@ -104,6 +104,7 @@ class Ui_Main(object):
         font.setBold(True)
         font.setWeight(75)
         self.createroom.setFont(font)
+        self.createroom.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.createroom.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 170, 127, 176), stop:1 rgba(255, 255, 127, 187));\n"
 "color:white;")
         self.createroom.setObjectName("createroom")
@@ -113,6 +114,7 @@ class Ui_Main(object):
         font.setFamily("Segoe UI")
         font.setPointSize(15)
         self.exit.setFont(font)
+        self.exit.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.exit.setStyleSheet("QLabel {\n"
 "background:none;\n"
 "}\n"

@@ -48,6 +48,7 @@ class Ui_Main(object):
         font.setFamily("Segoe UI")
         font.setPointSize(15)
         self.exit.setFont(font)
+        self.exit.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.exit.setStyleSheet("QLabel {\n"
 "background:none;\n"
 "}\n"
@@ -91,6 +92,7 @@ class Ui_Main(object):
         font.setBold(True)
         font.setWeight(75)
         self.joinroom.setFont(font)
+        self.joinroom.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.joinroom.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 170, 127, 176), stop:1 rgba(255, 255, 127, 187));\n"
 "color: rgb(255, 255, 255);")
         self.joinroom.setObjectName("joinroom")

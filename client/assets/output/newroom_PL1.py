@@ -58,6 +58,7 @@ class Ui_Main(object):
         font.setBold(True)
         font.setWeight(75)
         self.host.setFont(font)
+        self.host.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.host.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 170, 127, 176), stop:1 rgba(255, 255, 127, 187));\n"
 "color: rgb(255, 255, 255);")
         self.host.setObjectName("host")
@@ -69,6 +70,7 @@ class Ui_Main(object):
         font.setBold(True)
         font.setWeight(75)
         self.player.setFont(font)
+        self.player.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.player.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 170, 127, 176), stop:1 rgba(255, 255, 127, 187));\n"
 "color: rgb(255, 255, 255);")
         self.player.setObjectName("player")
@@ -78,6 +80,7 @@ class Ui_Main(object):
         font.setFamily("Segoe UI")
         font.setPointSize(15)
         self.exit.setFont(font)
+        self.exit.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.exit.setStyleSheet("QLabel {\n"
 "background:none;\n"
 "}\n"

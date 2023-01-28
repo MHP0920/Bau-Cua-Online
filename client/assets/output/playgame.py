@@ -58,6 +58,7 @@ class Ui_Main(object):
         font.setBold(True)
         font.setWeight(75)
         self.playagain.setFont(font)
+        self.playagain.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.playagain.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 170, 127, 176), stop:1 rgba(255, 255, 127, 187));\n"
 "color: rgb(255, 255, 255);")
         self.playagain.setObjectName("playagain")
@@ -67,6 +68,7 @@ class Ui_Main(object):
         font.setFamily("Segoe UI")
         font.setPointSize(15)
         self.exit.setFont(font)
+        self.exit.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.exit.setStyleSheet("QLabel {\n"
 "background:none;\n"
 "}\n"
@@ -95,19 +97,16 @@ class Ui_Main(object):
         self.firstimg = QtWidgets.QLabel(self.centralwidget)
         self.firstimg.setGeometry(QtCore.QRect(30, 220, 151, 151))
         self.firstimg.setText("")
-        #self.firstimg.setPixmap(QtGui.QPixmap(":/assets/images/bau.png"))
         self.firstimg.setScaledContents(True)
         self.firstimg.setObjectName("firstimg")
         self.secondimg = QtWidgets.QLabel(self.centralwidget)
         self.secondimg.setGeometry(QtCore.QRect(330, 220, 151, 151))
         self.secondimg.setText("")
-        #self.secondimg.setPixmap(QtGui.QPixmap(":/assets/images/cua.png"))
         self.secondimg.setScaledContents(True)
         self.secondimg.setObjectName("secondimg")
         self.thirdimg = QtWidgets.QLabel(self.centralwidget)
         self.thirdimg.setGeometry(QtCore.QRect(620, 220, 151, 151))
         self.thirdimg.setText("")
-        #self.thirdimg.setPixmap(QtGui.QPixmap(":/assets/images/tom.png"))
         self.thirdimg.setScaledContents(True)
         self.thirdimg.setObjectName("thirdimg")
         self.roomname = QtWidgets.QLabel(self.centralwidget)
