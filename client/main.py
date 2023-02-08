@@ -379,7 +379,7 @@ class PlayGame(QMainWindow):
             _new_balance = _solve(_chosen, _server, _balance)
             _server = []
             if _new_balance <= 0:
-                QMessageBox.critical(None, "God", "Bạn đã hết tiền =)))))))")
+                QMessageBox.critical(None, "God", "Bạn đã hết tiền")
                 load_customize()
             else:
                 _balance = _new_balance
