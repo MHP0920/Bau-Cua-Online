@@ -5,7 +5,8 @@ from _thread import *
 import pickle
 import random
 import string
-
+import copy
+import time
 
 server = "0.0.0.0"
 port = 5000
@@ -37,7 +38,7 @@ list_of_rooms = {}
             "roomstatus": "waiting" || "choosing" || "playing" || "ending"
             "host": "playername_randomid" || "bot",
             "players": {
-                "playername_randomid": {"balance": 0, "chosen": [], "ingame": False}
+                "playername_randomid": {"balance": 0, "chosen": [], "ingame": False, "locked": False}
             },
             "result": []
         }
@@ -82,13 +83,13 @@ class Additional:
         return True, username, roomid, roomname, balance, ishost, icr, total
     def get_status(self, roomid):
         try:
-            if not any(not x['ingame'] for x in list(list_of_rooms[roomid]['players'].values())) and list_of_rooms[roomid]['roomstatus'] == 'waiting' and len(list(list_of_rooms[roomid]['players'].values())) == list_of_rooms[roomid]['total']:
+            if not any(not x['ingame'] for x in list(list_of_rooms[roomid]['players'].values())) and list_of_rooms[roomid]['roomstatus'] == 'waiting' and len(list(list_of_rooms[roomid]['players'].values())) == list_of_rooms[roomid]['total'] and list_of_rooms[roomid]['host'] == 'bot':
                 list_of_rooms[roomid]['roomstatus'] = 'choosing'
-            elif not any(not x['chosen'] for x in list(list_of_rooms[roomid]['players'].values())) and list_of_rooms[roomid]['roomstatus'] == 'choosing':
+            elif not any(not x['locked'] for x in list(list_of_rooms[roomid]['players'].values())) and list_of_rooms[roomid]['roomstatus'] == 'choosing' and list_of_rooms[roomid]['host'] == 'bot':
                 list_of_rooms[roomid]['roomstatus'] = 'playing'
-            elif list_of_rooms[roomid]['result'] and list_of_rooms[roomid]['roomstatus'] == 'playing':
+            elif list_of_rooms[roomid]['result'] and list_of_rooms[roomid]['roomstatus'] == 'playing' and list_of_rooms[roomid]['host'] == 'bot':
                 list_of_rooms[roomid]['roomstatus'] = 'ending'
-            elif not any(x['chosen'] for x in list(list_of_rooms[roomid]['players'].values())) and list_of_rooms[roomid]['roomstatus'] == 'ending':
+            elif not any(x['chosen'] for x in list(list_of_rooms[roomid]['players'].values())) and list_of_rooms[roomid]['roomstatus'] == 'ending' and list_of_rooms[roomid]['host'] == 'bot':
                 list_of_rooms[roomid]['result'] = []
                 list_of_rooms[roomid]['roomstatus'] = 'waiting'
         except Exception as e:
@@ -98,7 +99,12 @@ class Additional:
         result = [random.choice(self.availresult) for _ in range(3)]
         list_of_rooms[roomid]['result'] = result
         return result
-
+    def remove_user(self, username):
+        try:
+            connected[username].close()
+            del connected[username]
+        except:
+            pass
 class Server:
     def __init__(self):
         self.features = Additional()
@@ -145,14 +151,18 @@ class Server:
             total = list_of_rooms[roomid]['total']
             current = len(list(list_of_rooms[roomid]['players'].values()))+1
         else:
-            current = 1
-        conn.sendall(pickle.dumps({"status": status, 'roomid': roomid, 'roomname':  roomname, 'total': total, 
-        'current': current}))
+            if not ishost:
+                current = 1
+            else:
+                current = 0
         
         #username = returned_info[1];  roomname = returned_info[3]; balance = returned_info[4]; ishost = returned_info[5]; iscreatingroom = returned_info[6]; total = returned_info[7]
         # Assign connected
         connected[username] = conn
         print("User", username, 'connected to server.')
+        def acp_message():
+            conn.sendall(pickle.dumps({"status": status, 'roomid': roomid, 'roomname':  roomname, 'total': total, 
+            'current': current}))
         # Assign room
         if iscreatingroom:
             list_of_rooms[roomid] = {
@@ -164,64 +174,95 @@ class Server:
                 "result": []
             }
             if not ishost:
-                list_of_rooms[roomid]["players"] = {username: {'balance': balance, "chosen": [], "ingame": False}}
+                list_of_rooms[roomid]["players"] = {username: {'balance': balance, "chosen": [], "ingame": False, 'locked': False}}
             print("User", username, "created room for", roomname + '. Room ID:', roomid)
+            acp_message()
         else:
             if len(list(list_of_rooms[roomid]['players'].values())) < list_of_rooms[roomid]['total'] and list_of_rooms[roomid]['roomstatus'] == 'waiting':
-                list_of_rooms[roomid]["players"][username] = {'balance': balance, "chosen": [], "ingame": False}
+                list_of_rooms[roomid]["players"][username] = {'balance': balance, "chosen": [], "ingame": False, "locked": False}
                 print("User", username, "joined room", roomname + '. Room ID:', roomid + ". Current:", len(list(list_of_rooms[roomid]['players'].values())))
+                acp_message()
             else:
                 print("Rejected user", username, 'to join the experiment, status: Room is full or room is in game. ID:', roomid)
-                conn.sendall(str.encode("Trò chơi đã bắt đầu hoặc đã đủ số người chơi."))
+                conn.sendall(pickle.dumps({"message": "Trò chơi đã bắt đầu hoặc đã đủ số người chơi.", 'status': "fulloringame"}))
                 conn.close()
                 # Remove user from server
-                try:
-                    del connected[username]
-                except:
-                    pass
+                self.features.remove_user(username)
                 return
         while True:
             try:
                 data = pickle.loads(conn.recv(4096))
-
-                if roomid in list(list_of_rooms.keys()):
+                _temp_dict = copy.deepcopy(list_of_rooms)
+                if roomid in list(_temp_dict.keys()):
                     if not data:
                         break
                     else:
                         try:
                             if data['status'] == "ready":
-                                list_of_rooms[roomid]['players'][username]["ingame"] = True
-                                conn.sendall(pickle.dumps({'status': self.features.get_status(roomid)}))
-                            elif data['status'] == 'unready':
+                                if not ishost:
+                                    list_of_rooms[roomid]['players'][username]["ingame"] = True
+                                    conn.sendall(pickle.dumps({'status': self.features.get_status(roomid)}))
+                                    
+                                else:
+                                    # Remove all unready player to start the game
+                                    if len(list(list_of_rooms[roomid]['players'].values())) > 0 and any(x['ingame'] for x in list(list_of_rooms[roomid]['players'].values())):
+                                        list_of_rooms[roomid]['roomstatus'] = 'choosing'
+                                        for key, _player in _temp_dict[roomid]['players'].items():
+                                            if _player['ingame'] == False:
+                                                try:
+                                                    del list_of_rooms[roomid]['players'][key]
+                                                    self.features.remove_user(key)
+                                                except:
+                                                    pass
+                                        conn.sendall(pickle.dumps({'status': self.features.get_status(roomid)}))
+                                        
+                                    else:
+                                        conn.sendall(pickle.dumps({'status': "roomnotready"}))
+                                        
+
+
+                                
+                            elif data['status'] == 'unready' and not ishost:
                                 if self.features.get_status(roomid) == 'waiting':
                                     list_of_rooms[roomid]['players'][username]["ingame"] = False
                                 conn.sendall(pickle.dumps({'status': self.features.get_status(roomid)}))
                             elif data['status'] == 'status':
                                 conn.sendall(pickle.dumps({'status': self.features.get_status(roomid)}))
                             elif data['status'] == 'reset':
-                                if self.features.get_status(roomid) == 'ending' or self.features.get_status(roomid) == 'waiting':
+                                if not ishost: # Noted.
                                     list_of_rooms[roomid]['players'][username]['ingame'] = False
                                     list_of_rooms[roomid]['players'][username]['chosen'] = []
+                                    list_of_rooms[roomid]['players'][username]['locked'] = False
 
                                     self.features.get_status(roomid)
                                     # Ask permission to resubmit new balance
                                     conn.sendall(pickle.dumps({'status': "neednewbalance"}))
                                 else:
-                                    conn.sendall(pickle.dumps({'status': "rejected"}))
+                                    # Wait for all players to get the result
+                                    time.sleep(5)
+                                    list_of_rooms[roomid]['roomstatus'] = 'waiting'
+                                    list_of_rooms[roomid]['result'] = []
+                                    conn.sendall(pickle.dumps({'status': "accepted"}))
                             elif data['status'] == 'result':
-                            
-                                if self.features.get_status(roomid) == 'playing':
+                                if not ishost and list_of_rooms[roomid]['host'] != 'bot':
+                                    # wait a little bit
+                                    time.sleep(2)
+                                if (self.features.get_status(roomid) == 'playing' and not ishost and list_of_rooms[roomid]['host'] == 'bot') or (not any(not x['locked'] for x in list(list_of_rooms[roomid]['players'].values())) and ishost and not list_of_rooms[roomid]['result']):
                                     result = self.features.generate_result(roomid)
                                     list_of_rooms[roomid]['result'] = result
                                     conn.sendall(pickle.dumps({"status": "accepted", "data": result}))
-                                else:
+                                elif (self.features.get_status(roomid) != 'playing' and not ishost and list_of_rooms[roomid]['host'] == 'bot') or (self.features.get_status(roomid) == 'playing' and not ishost and list_of_rooms[roomid]['host'] != 'bot'):
                                     conn.sendall(pickle.dumps({"status": "accepted", "data": list_of_rooms[roomid]['result']}))
-                            elif data['status'] == 'resubmit':
+                                else:
+                                    conn.sendall(pickle.dumps({"status": "roomnotready"}))
+
+                            elif data['status'] == 'resubmit' and not ishost:
                                 balance = data['balance']
                                 if self.features.check_info("tempcheck", roomid, roomname, balance, False, False, total)[0] == False:
                                     print("Reject connection from user", username, 'to server. Status: Balance not valid')
                                     conn.sendall(pickle.dumps({"status": "failed", "message": "Unvalid balance"}))
                                     conn.close()
+                                    self.features.remove_user(username)
                                     return
                                 else:
                                     conn.sendall(pickle.dumps({"status": "accepted"}))
@@ -229,11 +270,27 @@ class Server:
                                 # Get user chosen
                                 if self.features.get_status(roomid) != 'choosing':
                                     conn.sendall(pickle.dumps({"status": "rejected"}))
-                                elif not list_of_rooms[roomid]['players'][username]['chosen']:
-                                    list_of_rooms[roomid]['players'][username]['chosen'] = data['chosen']
+                                else:
+                                    list_of_rooms[roomid]['players'][username]['chosen'].extend(data['chosen'])
+                                    conn.sendall(pickle.dumps({"status": "accepted"}))
+                            elif data['status'] == 'lock':
+                                if not ishost:
+                                    list_of_rooms[roomid]['players'][username]['locked'] = True
                                     conn.sendall(pickle.dumps({"status": "accepted"}))
                                 else:
-                                    conn.sendall(pickle.dumps({"status": "rejected"}))
+                                    if not any(not x['locked'] for x in list(list_of_rooms[roomid]['players'].values())):
+                                        list_of_rooms[roomid]['roomstatus'] = 'playing'
+                                        conn.sendall(pickle.dumps({"status": "accepted"}))
+                                    else:
+                                        conn.sendall(pickle.dumps({"status": "roomnotready"}))
+                                        
+                            elif data['status'] == 'get':
+                                if data['type'] == 'chosen' and ishost:
+                                    _lst = [{k: v} for k, v in list_of_rooms[roomid]['players'].items()]
+                                    conn.sendall(pickle.dumps({'status': 'accepted', 'data': _lst}))
+                                else:
+                                    conn.sendall(pickle.dumps({'status': "rejected"}))
+
                             elif data['status'] == 'current':
                                 conn.sendall(pickle.dumps({"status": len(list(list_of_rooms[roomid]['players'].values()))}))
                             else:
@@ -244,14 +301,24 @@ class Server:
                 else:
                     break
             except:
+                self.features.remove_user(username)
                 break
         try:
             print("Rejected the connection from user", username, 'to the server, status: Player disconnected. ID:', roomid)
             del list_of_rooms[roomid]['players'][username]
             
         except: pass
-        if len(list(list_of_rooms[roomid]['players'].values())) <= 0 or ishost:
-            del list_of_rooms[roomid]
-            print("Clearing room", roomname, ", status: Room have no player(s) or the host left. ID:", roomid)
+        try:
+            if (len(list(list_of_rooms[roomid]['players'].values())) <= 0 and ishost == 'bot') or ishost:
+                for key, _player in _temp_dict[roomid]['players'].items():
+                    try:
+                        self.features.remove_user(key)
+                    except:
+                        pass
+                del list_of_rooms[roomid]
+                print("Clearing room", roomname, ", status: Room have no player(s) or the host left. ID:", roomid)
+        except Exception as bug:
+            pass
         conn.close()
+        self.features.remove_user(username)
 Server()
